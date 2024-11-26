@@ -1,18 +1,45 @@
 public class NotificationService()
 {
-    public void Get(string type, Action<string> sendNotification)
+    public void Get(string type)
     {
-        //if (type == "Email")
-        //    return new ...();
-        //else if (type == "SMS")
-        //    return new ...();
-        ////else if (type == "Push")
-        ////	return new ...();
+        if (type == "Email")
+            new EmailNotification().SendNotification(type);
+        else if (type == "SMS")
+            new SmsNotification().SendNotification(type);
+        //else if (type == "Push")
+        //	return new ...();
 
-        //else
-        //    throw new ArgumentException("Invalid notification type.");
-        sendNotification(type);
+        else
+            throw new ArgumentException("Invalid notification type.");
     }
 }
 
-public delegate bool Func(string type);
+public interface INotification
+{
+    public void SendNotification(string type);
+}
+
+public interface ISmsNotification : INotification
+{
+}
+
+public interface IEmailNotification : INotification
+{
+}
+
+public class SmsNotification : INotification
+{
+    public void SendNotification(string type)
+    {
+        throw new NotImplementedException();
+    }
+}
+
+public class EmailNotification : IEmailNotification
+{
+    public void SendNotification(string type)
+    {
+        throw new NotImplementedException();
+    }
+}
+
