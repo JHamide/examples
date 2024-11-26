@@ -19,14 +19,6 @@ public interface INotification
     public void SendNotification(string type);
 }
 
-public interface ISmsNotification : INotification
-{
-}
-
-public interface IEmailNotification : INotification
-{
-}
-
 public class SmsNotification : INotification
 {
     public void SendNotification(string type)
@@ -35,7 +27,7 @@ public class SmsNotification : INotification
     }
 }
 
-public class EmailNotification : IEmailNotification
+public class EmailNotification : INotification
 {
     public void SendNotification(string type)
     {
